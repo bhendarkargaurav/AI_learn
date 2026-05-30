@@ -1,0 +1,1 @@
+# a generative ai and agentic ai course
