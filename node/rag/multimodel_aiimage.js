@@ -20,12 +20,12 @@ const response = await client.chat.completions.create({
         {
           type: "image_url",
           image_url: {
-            url: "https://example.com/image.jpg",
+            url: "https://images.pexels.com/photos/32439849/pexels-photo-32439849.jpeg",
           },
         },
       ],
     },
   ],
 });
-
+ 
 console.log(response.choices[0].message.content);
