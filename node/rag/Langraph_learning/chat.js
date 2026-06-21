@@ -1,14 +1,26 @@
+import dotenv from 'dotenv'
 import { StateGraph, MessagesAnnotation, START, END } from "@langchain/langgraph"
+import { ChatOpenAI } from "@langchain/openai"
+
+
+
+dotenv.config();
+
+const llm = new ChatOpenAI({
+    model: "gpt-4o-mini",
+})
 
 // create graph
 const graph_builder = new StateGraph(MessagesAnnotation);
 
 // defining node/fun
-function chatbot(state) {
+async function chatbot(state) {
     //  console.log("\n===== CHATBOT NODE =====");
-    console.log("\n\nInside chatbot node", state)
+    console.log("\n\nInside chatbot node", state);
+
+    const response = await llm.invoke(state.messages);
     return {
-        messages: ["hii, this is a message from chatbot Node"],
+        messages: [response],
     }
 }
 
@@ -44,6 +56,12 @@ const updates_state = await graph.invoke({
 console.log("\nupdated state", updates_state)
 
 
+
+//StateGraph is the main class used to create a graph/workflow.
+// MessagesAnnotation This defines the structure of your state. append the response
+//START is a special built-in node.  //startoing node
+//END is a special built-in node.    //ending node
+
 //state = {message: ["Hey there"]}
 // node runs: chatbot(state: [Hey there])  -> ["hii, this is a message from chatbot"]
 // staet = {mesages: ["Hey There", "hii, this is a message from chatbot"]}   -> here both messages append bec of Anotation says
@@ -68,6 +86,6 @@ console.log("\nupdated state", updates_state)
 // return {"messages": ["hii this is a message from chatbot Node"]}
 
 
-graph_builder.addEdge
+// graph_builder.addEdge
 
 // graph_builder = StateGraph(State)
