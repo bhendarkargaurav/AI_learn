@@ -1,4 +1,4 @@
-// phase 2 of rag: user chat with llm for response
+// phase:2 (Retrival Phase) of rag: user chat with llm for response
 
 import dotenv from 'dotenv'
 import readlineSync from 'readline-sync';
