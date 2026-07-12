@@ -36,13 +36,12 @@ const chunks = await text_splitter.splitDocuments(docs);
 
 
 // vector Embedding
-
 const client = new QdrantClient({
     url: "http://localhost:6333",
 });
 
 //embedding model
-const text_embeddings = new OpenAIEmbeddings({  // OpenAIEMbedding locking for the open ai api
+const text_embeddings = new OpenAIEmbeddings({  // OpenAIEMbedding l0ocking for the open ai api
     model: 'text-embedding-3-large'
 })
 
