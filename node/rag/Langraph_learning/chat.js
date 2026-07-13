@@ -10,7 +10,7 @@ const llm = new ChatOpenAI({
     model: "gpt-4o-mini",
 })
 
-// create graph
+// create graph / workflow.
 const graph_builder = new StateGraph(MessagesAnnotation);
 
 // defining node/fun
@@ -33,7 +33,7 @@ function samplenode(state) {
 }
 
 
-//add node
+//creating and add node
 graph_builder.addNode("chatbot", chatbot)  //("name", code)
 graph_builder.addNode("samplenode", samplenode)
 
@@ -46,10 +46,10 @@ graph_builder.addEdge("samplenode", END)
 
 // console.log(graph_builder);
 
-//comple the graph
+//compile the graph
 const graph = graph_builder.compile();
 
-// run graph
+// run graph  // start from here (1)
 const updates_state = await graph.invoke({
     messages: ["Hii, My name is Gaurav Bhendarkar"],
 })
